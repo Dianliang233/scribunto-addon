@@ -17,9 +17,9 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 - [x] `mw.language`
 - [x] `mw.message`
 - [x] `mw.site`
-- [ ] `mw.text`
-- [ ] `mw.title`
-- [ ] `mw.uri`
+- [x] `mw.text`
+- [x] `mw.title`
+- [x] `mw.uri`
 - [ ] `mw.ustring`
 - [ ] `bit32`
 - [ ] `libraryUtil`

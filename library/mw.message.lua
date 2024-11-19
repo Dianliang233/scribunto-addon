@@ -67,7 +67,7 @@ function mw.message:numParams(...) end
 ---
 ---The default language is the one returned by mw.message.getDefaultLanguage().
 ---
----@param lang string | { getCode: function } | nil The language to use.
+---@param lang string | { getCode: fun(): string } | nil The language to use.
 ---@return mw.message #The message object.
 function mw.message:inLanguage(lang) end
 

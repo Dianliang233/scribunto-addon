@@ -65,8 +65,7 @@ function mw.log(...) end
 
 ---Calls mw.dumpObject() and appends the resulting string to the log buffer.
 ---@param object any Object to log.
----@param prefix string If given, added to the log buffer followed by an equals sign before the serialized string is appended (i.e. the logged text will be "prefix = object-string").
----@overload fun(object: any): nil
+---@param prefix? string If given, added to the log buffer followed by an equals sign before the serialized string is appended (i.e. the logged text will be "prefix = object-string").
 function mw.logObject(object, prefix) end
 
 -- no export

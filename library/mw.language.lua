@@ -10,9 +10,8 @@ mw.language = {}
 
 ---Get the full name of the language for the given language code in a language.
 ---
----@overload fun(code: string): string
 ---@param code string The language code.
----@param inLanguage string Name translated in target language if a value is given for inLanguage and [Extension:CLDR](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CLDR) is installed. Otherwise and by default uses native name (language autonym).
+---@param inLanguage? string Name translated in target language if a value is given for inLanguage and [Extension:CLDR](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CLDR) is installed. Otherwise and by default uses native name (language autonym).
 ---@return string #The language name.
 function mw.language.fetchLanguageName(code, inLanguage) end
 
@@ -24,8 +23,8 @@ function mw.language.fetchLanguageName(code, inLanguage) end
 ---
 ---@overload fun(): table<string, string>
 ---@overload fun(inLanguage: string): table<string, string>
----@param inLanguage string | nil The language code to return names in that language.
----@param include string | nil The inclusion criteria for languages ('all', 'mwfile', 'mw').
+---@param? inLanguage string The language code to return names in that language.
+---@param? include string The inclusion criteria for languages ('all', 'mwfile', 'mw').
 ---@return table <string, string> table mapping language code to language name.
 function mw.language.fetchLanguageNames(inLanguage, include) end
 
@@ -152,9 +151,8 @@ function mw.language:caseFold(s) end
 
 ---Formats a number with grouping and decimal separators appropriate for the given language. Given 123456.78, this may produce "123,456.78", "123.456,78", or even something like "١٢٣٬٤٥٦٫٧٨" depending on the language and wiki configuration.
 ---
----@overload fun(n: number): string
 ---@param n number The number to format.
----@param options { noCommafy: boolean } A table of options. Set `noCommafy` to true to omit grouping separators and use a dot (.) as the decimal separator. Digit transformation may still occur, which may include transforming the decimal separator.
+---@param options? { noCommafy: boolean } A table of options. Set `noCommafy` to true to omit grouping separators and use a dot (.) as the decimal separator. Digit transformation may still occur, which may include transforming the decimal separator.
 ---@return string #The formatted number.
 function mw.language:formatNum(n, options) end
 
@@ -176,15 +174,15 @@ function mw.language:formatNum(n, options) end
 ---```
 ---
 ---@param format string The format string.
----@param timestamp string | nil The timestamp to format.
----@param isLocal boolean | nil If true, the time is formatted in the wiki's local time rather than in UTC.
+---@param timestamp? string The timestamp to format.
+---@param isLocal? boolean If true, the time is formatted in the wiki's local time rather than in UTC.
 ---@return string #The formatted date.
 function mw.language:formatDate(format, timestamp, isLocal) end
 
 ---Formats a duration in a human-readable way.
 ---
 ---@param seconds number The duration in seconds.
----@param chosenIntervals table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> | nil The interval units to use in the response.
+---@param chosenIntervals? table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> The interval units to use in the response.
 ---@return string #The formatted duration.
 function mw.language:formatDuration(seconds, chosenIntervals) end
 
@@ -256,20 +254,20 @@ function mw.language:getDir() end
 
 ---Returns a string containing either U+200E (the left-to-right mark) or U+200F (the right-to-left mark), depending on the directionality of the language and whether `opposite` is a true or false value.
 ---
----@param opposite boolean | nil If true, returns the mark for the opposite direction.
+---@param opposite? boolean If true, returns the mark for the opposite direction.
 ---@return string #The directionality mark.
 function mw.language:getDirMark(opposite) end
 
 ---Returns a string containing either "&lrm;" or "&rlm;", depending on the directionality of the language and whether `opposite` is a true or false value.
 ---
----@param opposite boolean | nil If true, returns the entity for the opposite direction.
+---@param opposite? boolean If true, returns the entity for the opposite direction.
 ---@return string #The directionality mark entity.
 function mw.language:getDirEntity(opposite) end
 
 ---Breaks a duration in seconds into more human-readable units, e.g. 12345 to 3 hours, 25 minutes and 45 seconds, returning the result as a table mapping unit names to numbers.
 ---
 ---@param seconds number The duration in seconds.
----@param chosenIntervals table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> | nil The interval units to use in the response.
+---@param chosenIntervals? table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> The interval units to use in the response.
 ---@return table<string, number> #A table mapping unit names to numbers.
 function mw.language:getDurationIntervals(seconds, chosenIntervals) end
 
