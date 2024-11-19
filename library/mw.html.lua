@@ -91,4 +91,4 @@ function mw.html:done() end
 ---@return mw.html #The root mw.html object.
 function mw.html:allDone() end
 
-return mw.html
+-- no export

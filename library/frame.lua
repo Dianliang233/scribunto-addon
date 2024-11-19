@@ -132,4 +132,4 @@ function frame:newTemplateParserValue(namedArg) end
 ---@return function #The iterator function.
 function frame:argumentPairs() end
 
-return frame
+-- no export

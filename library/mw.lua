@@ -69,4 +69,4 @@ function mw.log(...) end
 ---@overload fun(object: any): nil
 function mw.logObject(object, prefix) end
 
-return mw
+-- no export

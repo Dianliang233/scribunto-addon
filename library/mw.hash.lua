@@ -13,4 +13,4 @@ function mw.hash.hashValue(algo, value) end
 ---@return table<string> #A list of available hash algorithms.
 function mw.hash.listAlgorithms() end
 
-return mw.hash
+-- no export
