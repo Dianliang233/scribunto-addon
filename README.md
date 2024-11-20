@@ -21,10 +21,10 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 - [x] `mw.title`
 - [x] `mw.uri`
 - [x] `mw.ustring`
-- [ ] `bit32`
-- [ ] `libraryUtil`
-- [ ] `luabit`
-- [ ] `strict`
+- [x] `bit32`
+- [x] `libraryUtil`
+- [x] `luabit`
+- [x] `strict`
 - [x] `ustring`
 
 <details>
