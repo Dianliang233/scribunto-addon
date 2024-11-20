@@ -1,6 +1,8 @@
 # lol macos
 .DS_Store
 
+.vscode
+
 # Compiled Lua sources
 luac.out
 

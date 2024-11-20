@@ -2,6 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/LuaLS/LLS-Addons/main/schemas/addon_config.schema.json",
   "words": ["mw\\."],
   "settings": {
-    "Lua.runtime.version": "Lua 5.1"
+    "Lua.runtime.version": "Lua 5.1",
+    "Lua.runtime.builtin": {
+      "package": "disable",
+      "os": "disable",
+      "debug": "disable",
+      "io": "disable",
+      "coroutine": "disable"
+    }
   }
 }
