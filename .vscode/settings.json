@@ -1,0 +1,12 @@
+{
+  "editor.wordWrap": "on",
+  "cSpell.words": ["disp", "enctype", "luabit", "ustring"],
+  "Lua.runtime.version": "Lua 5.1",
+  "Lua.runtime.builtin": {
+    "package": "disable",
+    "os": "disable",
+    "debug": "disable",
+    "io": "disable",
+    "coroutine": "disable"
+  }
+}
