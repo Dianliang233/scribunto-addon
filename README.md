@@ -61,3 +61,5 @@ This addon is licensed under the MIT license. See [LICENSE](LICENSE) for the ful
 The definition documentations are derived from [Lua reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual) on MediaWiki.org, which is further derived from the [Lua 5.1 reference manual](https://www.lua.org/manual/5.1/index.html), both of which are available under the MIT license.
 
 Generative AI is used to help generate the definitions based on the manual, which are further refined by human.
+
+(Last updated to [revision 6855937](https://www.mediawiki.org/w/index.php?title=Extension:Scribunto/Lua_reference_manual&oldid=6855937))
