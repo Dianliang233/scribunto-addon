@@ -129,7 +129,7 @@ function frame:newParserValue(namedArg) end
 function frame:newTemplateParserValue(namedArg) end
 
 ---Same as pairs(frame.args). Included for backwards compatibility.
----@return function #The iterator function.
+---@return fun(table: table<string | number, string>, index?: string | number): string | number, string #The iterator function.
 function frame:argumentPairs() end
 
 -- no export

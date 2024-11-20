@@ -133,7 +133,7 @@ function mw.text.split(string, pattern, plain) end
 ---@param string string The string to split.
 ---@param pattern string The pattern to match.
 ---@param plain? boolean If true, pattern will be interpreted as a literal string.
----@return function #The iterator function.
+---@return fun(): string #The iterator function.
 function mw.text.gsplit(string, pattern, plain) end
 
 ---Generates an HTML-style tag for name.

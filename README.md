@@ -20,15 +20,16 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 - [x] `mw.text`
 - [x] `mw.title`
 - [x] `mw.uri`
-- [ ] `mw.ustring`
+- [x] `mw.ustring`
 - [ ] `bit32`
 - [ ] `libraryUtil`
 - [ ] `luabit`
 - [ ] `strict`
-- [ ] `ustring`
+- [x] `ustring`
 
 <details>
 <summary>Extensions</summary>
+
 - [ ] `mw.wikibase`
 - [ ] `mw.wikibase.lexeme`
 - [ ] `mw.wikibase.mediainfo`
@@ -52,6 +53,6 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 
 This addon is licensed under the MIT license. See [LICENSE](LICENSE) for the full license text.
 
-This manual is derived from [Lua reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual) on MediaWiki.org, which is further derived from the [Lua 5.1 reference manual](https://www.lua.org/manual/5.1/index.html), both of which are available under the MIT license.
+The definition documentations are derived from [Lua reference manual](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual) on MediaWiki.org, which is further derived from the [Lua 5.1 reference manual](https://www.lua.org/manual/5.1/index.html), both of which are available under the MIT license.
 
 Generative AI is used to help generate the definitions based on the manual, which are further refined by human.

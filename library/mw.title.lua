@@ -140,16 +140,12 @@ function mw.title:fullUrl(query, proto) end
 ---Returns the local URL for this title.
 ---@param query? table | string The query parameters.
 ---@return string #The local URL.
-function mw.title:localUrl(query)
-    return mw.uri.localUrl(self.prefixedText, query)
-end
+function mw.title:localUrl(query) end
 
 ---Returns the canonical URL for this title.
 ---@param query? table | string The query parameters.
 ---@return string #The canonical URL.
-function mw.title:canonicalUrl(query)
-    return mw.uri.canonicalUrl(self.prefixedText, query)
-end
+function mw.title:canonicalUrl(query) end
 
 ---Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
 ---@return string | nil
