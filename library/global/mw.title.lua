@@ -9,7 +9,6 @@
 ---@field mimeType string The [MIME type](https://en.wikipedia.org/wiki/MIME_type) of the file.
 ---@field length number The length (duration) of the media file in seconds. Zero for media types which do not support length.
 
-
 ---@class mw.title
 ---@field id number The page_id. `0` if the page does not exist. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---@field interwiki string The interwiki prefix, or the empty string if none.

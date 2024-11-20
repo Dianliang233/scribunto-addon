@@ -36,7 +36,7 @@ function mw.uri.decode(string, enctype) end
 ---@param string string The string to be encoded.
 ---@return string #The encoded string.
 function mw.uri.anchorEncode(string)
-    return mw.uri.encode(string, "WIKI")
+	return mw.uri.encode(string, "WIKI")
 end
 
 ---Encodes a table as a URI query string.
