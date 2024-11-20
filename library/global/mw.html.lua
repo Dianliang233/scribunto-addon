@@ -51,12 +51,12 @@ function mw.html:tag(tagName, args) end
 ---@param name string The name of the attribute to set.
 ---@param value string | nil The value of the attribute to set. A value of nil causes any attribute with the given name to be unset if it was previously set.
 ---@return mw.html #The mw.html object.
-function mw.html.attr(name, value) end
+function mw.html:attr(name, value) end
 
 ---Set an HTML attribute with the given name and value on the node.
 ---@param table table<string, string> A table holding name->value pairs of attributes to set.
 ---@return mw.html #The mw.html object.
-function mw.html.attr(table) end
+function mw.html:attr(table) end
 
 ---Get the value of a html attribute previously set using [`html:attr()`](lua://mw.html.attr) with the given `name`.
 ---@param name string The name of the attribute to get.
@@ -65,18 +65,19 @@ function mw.html:getAttr(name) end
 
 ---Adds a class name to the node's class attribute.
 ---@param class string | nil Class name to add to the node. If a nil parameter is passed, this is a no-op.
+---@return mw.html #The mw.html object.
 function mw.html:addClass(class) end
 
 ---Set an CSS property with the given name and value on the node.
 ---@param name string The name of the attribute to set.
 ---@param value string | nil The value of the attribute to set. A value of nil causes any property with the given name to be unset if it was previously set.
 ---@return mw.html #The mw.html object.
-function mw.html.css(name, value) end
+function mw.html:css(name, value) end
 
 ---Set an CSS property with the given name and value on the node.
 ---@param table table<string, string> A table holding name->value pairs of property to set.
 ---@return mw.html #The mw.html object.
-function mw.html.css(table) end
+function mw.html:css(table) end
 
 ---Add some raw css to the node's style attribute.
 ---@param css string | nil The css to add to the node's style attribute. If a nil parameter is passed, this is a no-op.

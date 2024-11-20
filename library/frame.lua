@@ -17,7 +17,7 @@ local frame = {}
 ---
 ---If preprocessor syntax such as template invocations and triple-brace arguments are included within an argument to `#invoke`, they will not be expanded, after being passed to Lua, until their values are being requested in Lua. If certain special tags written in XML notation, such as `<pre>`, `<nowiki>`, `<gallery>` and `<ref>`, are included as arguments to #invoke, then these tags will be converted to "[strip markers](https://www.mediawiki.org/wiki/Strip_marker)" — special strings which begin with a delete character (ASCII 127), to be replaced with HTML after they are returned from #invoke.
 ---@type table<number | string, string>
-frame.arg = {}
+frame.args = {}
 
 ---Call a parser function, returning an appropriate string. This is preferable to [frame:preprocess](lua://frame.preprocess), but whenever possible, native Lua functions or Scribunto library functions should be preferred to this interface.
 ---
