@@ -23,8 +23,8 @@ function mw.language.fetchLanguageName(code, inLanguage) end
 ---
 ---@overload fun(): table<string, string>
 ---@overload fun(inLanguage: string): table<string, string>
----@param? inLanguage string The language code to return names in that language.
----@param? include string The inclusion criteria for languages ('all', 'mwfile', 'mw').
+---@param inLanguage? string The language code to return names in that language.
+---@param include? string The inclusion criteria for languages ('all', 'mwfile', 'mw').
 ---@return table <string, string> table mapping language code to language name.
 function mw.language.fetchLanguageNames(inLanguage, include) end
 

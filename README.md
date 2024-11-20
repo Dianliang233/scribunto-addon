@@ -10,6 +10,10 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 
 ## Progress
 
+Definitions for all vanilla Scribunto APIs are now complete. The definitions for extensions are still in progress.
+
+<details>
+
 - [x] `mw`
 - [x] `frame` object
 - [x] `mw.hash`
@@ -26,6 +30,7 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 - [x] `luabit`
 - [x] `strict`
 - [x] `ustring`
+</details>
 
 <details>
 <summary>Extensions</summary>
@@ -34,13 +39,13 @@ The [addon manager](https://luals.github.io/wiki/addons/#installing-addons) for 
 - [ ] `mw.wikibase.lexeme`
 - [ ] `mw.wikibase.mediainfo`
 - [ ] `mw.bcmath`
-- [ ] `mw.smw`
-- [ ] `mw.ext.data`
+- [x] `mw.smw`
+- [x] `mw.ext.data`
 - [ ] `mw.ext.cargo`
 - [ ] `mw.ext.cattools`
 - [ ] `mw.ext.FlaggedRevs`
-- [ ] `mw.ext.TitleBlacklist`
-- [ ] `mw.ext.ParserFunctions`
+- [x] `mw.ext.TitleBlacklist`
+- [x] `mw.ext.ParserFunctions`
 - [ ] `mw.ext.proofreadPage`
 - [ ] `mw.ext.articlePlaceholder`
 - [ ] `mw.ext.externalData`
