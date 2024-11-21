@@ -66,6 +66,7 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [ ] `mw.ext.externalData`
 - [ ] `mw.ext.UnlinkedWikibase`
 - [ ] `mw.ext.seo`
+- [x] `mw.ext.VariablesLua`
 - [ ] `mw.slots`
 </details>
 
