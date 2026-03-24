@@ -64,7 +64,7 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [x] `mw.ext.TitleBlacklist`
 - [x] `mw.ext.translate.messageBundle`
 - [x] `mw.ext.ParserFunctions`
-- [ ] `mw.ext.proofreadPage`
+- [x] `mw.ext.proofreadPage`
 - [ ] `mw.ext.articlePlaceholder`
 - [ ] `mw.ext.externalData`
 - [ ] `mw.ext.UnlinkedWikibase`
