@@ -35,11 +35,21 @@ function mw.language.getContentLanguage() end
 
 mw.getContentLanguage = mw.language.getContentLanguage
 
+---Include the final, implicit fallback to 'en' (English) for all languages. This is the default behavior.
+---@see mw.language.FALLBACK_STRICT
+---@see mw.language.getFallbacksFor
+mw.language.FALLBACK_MESSAGES = "FALLBACK_MESSAGES"
+---Don't include this implicit fallback, but only list the explicit fallbacks of the language. (Some languages have an explicit fallback to English, but most do not.)
+---@see mw.language.FALLBACK_MESSAGES
+---@see mw.language.getFallbacksFor
+mw.language.FALLBACK_STRICT = "FALLBACK_STRICT"
+
 ---Returns a list of MediaWiki's fallback language codes for the specified code.
 ---
 ---@param code string The language code to check.
+---@param mode? `mw.language.FALLBACK_MESSAGES` | `mw.language.FALLBACK_STRICT` The fallback mode to use. By default, the final implicit fallback to 'en' (English) is included; set to [`mw.language.FALLBACK_STRICT`](lua://mw.language.FALLBACK_STRICT) to exclude it.
 ---@return table<mw.language> #A list of fallback language codes.
-function mw.language.getFallbacksFor(code) end
+function mw.language.getFallbacksFor(code, mode) end
 
 ---Checks whether a language code is known to MediaWiki.
 ---
@@ -98,6 +108,7 @@ function mw.language:getCode() end
 
 ---Returns the standard [BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) language code for this language object. This is the code string which is appropriate to use in HTML, for example as the value of a `lang` attribute.
 ---
+---@see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Language/BCP-47
 ---@return string #The BCP-47 language code.
 function mw.language:toBcp47Code() end
 
@@ -105,8 +116,9 @@ function mw.language:toBcp47Code() end
 ---
 ---Equivalent to `mw.language.getFallbacksFor(lang:getCode())`.
 ---
+---@param mode? `mw.language.FALLBACK_MESSAGES` | `mw.language.FALLBACK_STRICT` The fallback mode to use. By default, the final implicit fallback to 'en' (English) is included; set to [`mw.language.FALLBACK_STRICT`](lua://mw.language.FALLBACK_STRICT) to exclude it.
 ---@return table<mw.language> #A list of fallback language codes.
-function mw.language:getFallbackLanguages() end
+function mw.language:getFallbackLanguages(mode) end
 
 ---Returns `true` if the language is written right-to-left, `false` if it is written left-to-right.
 ---

@@ -26,12 +26,12 @@ function mw.message.newFallbackSequence(...) end
 ---@return mw.message #The new message object.
 function mw.message.newRawMessage(msg, ...) end
 
----Wraps the value so that it will not be parsed as wikitext by msg:parse().
+---Wraps the value so that it will not be parsed as wikitext.
 ---@param value messageParam The value to wrap.
 ---@return valuemt #The wrapped value.
 function mw.message.rawParam(value) end
 
----Wraps the value so that it will automatically be formatted as by lang:formatNum().
+---Wraps the value so that it will automatically be formatted as by [lang:formatNum()](lua://mw.language.formatNum).
 ---@param value number The value to wrap.
 ---@return valuemt #The wrapped value.
 function mw.message.numParam(value) end

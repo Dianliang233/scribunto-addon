@@ -36,6 +36,7 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [x] `mw.language`
 - [x] `mw.message`
 - [x] `mw.site`
+- [x] `mw.svg`
 - [x] `mw.text`
 - [x] `mw.title`
 - [x] `mw.uri`
@@ -59,7 +60,9 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [ ] `mw.ext.cargo`
 - [ ] `mw.ext.cattools`
 - [ ] `mw.ext.FlaggedRevs`
+- [x] `mw.ext.tabber`
 - [x] `mw.ext.TitleBlacklist`
+- [ ] `mw.ext.translate.messageBundle`
 - [x] `mw.ext.ParserFunctions`
 - [ ] `mw.ext.proofreadPage`
 - [ ] `mw.ext.articlePlaceholder`
@@ -68,6 +71,7 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [ ] `mw.ext.seo`
 - [x] `mw.ext.VariablesLua`
 - [ ] `mw.slots`
+- [x] `bucket`
 </details>
 
 ## Licensing and acknowledgements
@@ -78,4 +82,4 @@ The definition documentations are derived from [Lua reference manual](https://ww
 
 Generative AI is used to help generate the definitions based on the manual, which are further refined by human.
 
-(Last updated to [revision 6855937](https://www.mediawiki.org/w/index.php?title=Extension:Scribunto/Lua_reference_manual&oldid=6855937))
+(Last updated to [revision 8296099](https://www.mediawiki.org/w/index.php?title=Extension:Scribunto/Lua_reference_manual&oldid=8296099))

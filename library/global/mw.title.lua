@@ -8,6 +8,7 @@
 ---@field size number The size of the file in bytes.
 ---@field mimeType string The [MIME type](https://en.wikipedia.org/wiki/MIME_type) of the file.
 ---@field length number The length (duration) of the media file in seconds. Zero for media types which do not support length.
+---@field metadata table<string, string | table<string, string>> Embedded metadata (e.g. Exif) from the file. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
 
 ---@class mw.title
 ---@field id number The page_id. `0` if the page does not exist. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
@@ -15,23 +16,23 @@
 ---@field namespace number The namespace number.
 ---@field fragment string The fragment (aka section/anchor linking), or the empty string. May be assigned.
 ---@field nsText string The text of the namespace for the page.
----@field subjectNsText string The text of the subject namespace for the page.
----@field talkNsText string The text of the talk namespace for the page, or nil if this title cannot have a talk page.
+---@field subjectNsText? string The text of the subject namespace for the page.
+---@field talkNsText? string The text of the talk namespace for the page, or nil if this title cannot have a talk page.
 ---@field text string The title of the page, without the namespace or interwiki prefixes.
 ---@field prefixedText string The title of the page, with the namespace and interwiki prefixes.
 ---@field fullText string The title of the page, with the namespace and interwiki prefixes and the fragment. Interwiki is not returned if equal to the current.
 ---@field rootText string If this is a subpage, the title of the root page without prefixes. Otherwise, the same as title.text.
 ---@field baseText string If this is a subpage, the title of the page it is a subpage of without prefixes. Otherwise, the same as title.text.
 ---@field subpageText string If this is a subpage, just the subpage name. Otherwise, the same as title.text.
----@field canTalk boolean Whether the page for this title could have a talk page.
+---@field canTalk? boolean Whether the page for this title could have a talk page.
 ---@field exists boolean Whether the page exists. Alias for file.exists for Media-namespace titles. For File-namespace titles this checks the existence of the file description page, not the file itself. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
----@field file FileMetadata | { exists: false } Title objects representing a page in the File or Media namespace will have a property called file. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
----@field fileExists boolean Whether the file exists. It will be recorded as an image usage. The fileExists property on a Title object exists for backwards compatibility reasons and is an alias for [file.exists](lua://FileMetadata).
----@field isContentPage boolean Whether this title is in a content namespace.
+---@field file? FileMetadata | { exists: false } Title objects representing a page in the File or Media namespace will have a property called file. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
+---@field fileExists? boolean Whether the file exists. It will be recorded as an image usage. The fileExists property on a Title object exists for backwards compatibility reasons and is an alias for [file.exists](lua://FileMetadata).
+---@field isContentPage? boolean Whether this title is in a content namespace.
 ---@field isExternal boolean Whether this title has an interwiki prefix.
 ---@field isLocal boolean Whether this title is in this project. For example, on the English Wikipedia, any other Wikipedia is considered "local" while Wiktionary and such are not.
 ---@field isRedirect boolean Whether this is the title for a page that is a redirect. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
----@field isSpecialPage boolean Whether this is the title for a possible special page (i.e. a page in the Special: namespace).
+---@field isSpecialPage? boolean Whether this is the title for a possible special page (i.e. a page in the Special: namespace).
 ---@field isSubpage boolean Whether this title is a subpage of some other title.
 ---@field isTalkPage boolean Whether this is a title for a talk page.
 ---@field contentModel string The content model for this title, as a string. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
@@ -39,16 +40,21 @@
 ---@field rootPageTitle mw.title The same as mw.title.makeTitle(title.namespace, title.rootText).
 ---@field talkPageTitle mw.title | nil The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].talk.id, title.text), or nil if this title cannot have a talk page.
 ---@field subjectPageTitle mw.title The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].subject.id, title.text).
----@field redirectTarget mw.title | false Returns a title object of the target of the redirect page if the page is a redirect and the page exists, returns false otherwise.
----@field protectionLevels table<string, (string | nil)[]> The page's protection levels. This is a table with keys corresponding to each action (e.g., "edit" and "move"). The table values are arrays, the first item of which is a string containing the protection level. If the page is unprotected, either the table values or the array items will be nil. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
----@field cascadingProtection { restrictions: (string | nil)[], sources: string[] } The cascading protections applicable to the page. This is a table with keys "restrictions" (itself a table with keys like protectionLevels has) and "sources" (an array listing titles where the protections cascade from). If no protections cascade to the page, "restrictions" and "sources" will be empty. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
----@field categories string[] The list of categories used on the page. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
----@field content string | nil Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
----@field pageLang mw.language The language object for the title's page content language, which defaults to the wiki's content language. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
+---@field redirectTarget? mw.title | false Returns a title object of the target of the redirect page if the page is a redirect and the page exists, returns false otherwise.
+---@field protectionLevels? table<string, (string | nil)[]> The page's protection levels. This is a table with keys corresponding to each action (e.g., "edit" and "move"). The table values are arrays, the first item of which is a string containing the protection level. If the page is unprotected, either the table values or the array items will be nil. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
+---@field cascadingProtection? { restrictions: (string | nil)[], sources: string[] } The cascading protections applicable to the page. This is a table with keys "restrictions" (itself a table with keys like protectionLevels has) and "sources" (an array listing titles where the protections cascade from). If no protections cascade to the page, "restrictions" and "sources" will be empty. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
+---@field categories? string[] The list of categories used on the page. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
+---@field content? string Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
+---@field pageLang? mw.language The language object for the title's page content language, which defaults to the wiki's content language. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
+---@field isDisambiguationPage? boolean (Provided by [Extension:Disambiguator](https://www.mediawiki.org/wiki/Extension:Disambiguator)) Returns true for disambiguation pages. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
+---@field pageAssessments string[] (Provided by [Extension:PageAssessments](https://www.mediawiki.org/wiki/Extension:PageAssessments)) Returns the names of WikiProjects associated with the page along with their class and importance assessments. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
+---@field pageImage string (Provided by [Extension:PageImages](https://www.mediawiki.org/wiki/Extension:PageImages)) Returns the name of the file selected as the image that is shown in search results and related article lists. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---
 ---Title utilities and access to page information.
 ---
 ---Note that fields ending with text return titles as string values whereas the fields ending with title return title objects.
+---
+---Title objects may be compared using relational operators. [tostring(title)](lua://tostring) will return title.prefixedText.
 ---
 ---Note that accessing any expensive field on a title object records a "link" to the page (as shown on Special:WhatLinksHere, for example). Using the title object's getContent() method or accessing the redirectTarget field records it as file or fileExists fields records it as a "file link".
 mw.title = {}
@@ -83,7 +89,34 @@ function mw.title.new(text, namespace) end
 ---
 ---@param id number The title page ID.
 ---@return mw.title | nil #The new title object, or nil if the page does not exist.
+---@see mw.title.newBatch
 function mw.title.new(id) end
+
+---@class batchObj
+---
+---Object returned by [mw.title.newBatch()](lua://mw.title.newBatch) which can be used to look up multiple titles at once.
+---
+---@see mw.title.newBatch
+local batchObj = {}
+
+---Set the lookup to check for the existence of the pages.
+---
+---If this method is called, the lookup will populate the `.exists`, `.contentModel`, `.id`, and `.isRedirect` fields on the [title objects](lua://mw.title) in addition to the basic fields.
+function batchObj:lookupExistence() end
+
+---Execute the lookup and return the title objects.
+---
+---[This method may be expensive](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties). If [batchObj:lookupExistence()](lua://batchObj.lookupExistence) was called first, it will increment the expensive function count once for every 25 items it needs to lookup.
+---@return mw.title[] #The title objects for the pages looked up. If [batchObj:lookupExistence()](lua://batchObj.lookupExistence) was called first, the title objects will have the `.exists`, `.contentModel`, `.id`, and `.isRedirect` fields populated.
+function batchObj:getTitles() end
+
+---Create a batch of titles to look up. For further usage notes, see the methods on the returned [batchObj](lua://batchObj).
+---
+---@param pages string[] A list of page titles to look up. using numbers as is allowed by `mw.title.new` is not currently supported.
+---@param defaultNamespace? string Default namespace to use when looking up the page title.
+---@returns `batchObj`
+---@see mw.title.new
+function mw.title.newBatch(pages, defaultNamespace) end
 
 ---Creates a title object with title `title` in namespace `namespace`, optionally with the specified fragment and interwiki prefix.
 ---
@@ -147,6 +180,7 @@ function mw.title:localUrl(query) end
 function mw.title:canonicalUrl(query) end
 
 ---Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
+---@deprecated Use the `content` property instead.
 ---@return string | nil
 function mw.title:getContent() end
 

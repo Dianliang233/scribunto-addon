@@ -47,7 +47,8 @@ function mw.isSubsting() end
 ---@return unknown loaderdata
 function mw.loadData(module) end
 
----Load data from JSON pages. The JSON content must be an array or object.
+---Works like [mw.loadData()](lua://mw.loadData), except it loads data from JSON pages rather than Lua tables.
+---The JSON content must be an array or object.
 ---@see mw.text.jsonDecode
 ---@param page string The page to load the JSON data from.
 ---@return table #The JSON data.

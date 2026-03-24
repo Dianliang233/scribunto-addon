@@ -25,6 +25,7 @@
 ---@field server string The value of $wgServer.
 ---@field siteName string The value of $wgSitename.
 ---@field stylePath string The value of $wgStylePath.
+---@field wikiId string A string containing the [wiki ID](https://www.mediawiki.org/wiki/Manual:Wiki_ID).
 ---@field namespaces table<number | string, Namespace> A table of namespace objects, indexed by namespace number or name (localized or canonical).
 ---@field contentNamespaces table<number | string, Namespace> A table of content namespaces, indexed by namespace number or name (localized or canonical).
 ---@field subjectNamespaces table<number | string, Namespace> A table of subject namespaces, indexed by namespace number or name (localized or canonical).

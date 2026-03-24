@@ -45,7 +45,7 @@ function frame:callParserFunction(name, ...) end
 ---@return string #The expanded wikitext.
 function frame:callParserFunction(namedArg) end
 
----Expands the given wikitext. This is equivalent to a call to [frame:callParserFunction()](frame:callParserFunction) with function name 'msg' (see [Help:Magic words#Transclusion modifiers](https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_words#Transclusion_modifiers)) and with title prepended to args.
+---Expands the given wikitext.
 ---
 ---As in transclusion, if the passed title does not contain a namespace prefix it will be assumed to be in the Template: namespace.
 ---
@@ -55,7 +55,7 @@ function frame:callParserFunction(namedArg) end
 ---@return string #The expanded wikitext.
 function frame:expandTemplate(namedArg) end
 
----Expands an extension tag. This is equivalent to a call to [frame:callParserFunction()](frame:callParserFunction) with function name '#tag' (see [Help:Magic words#Miscellaneous](https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_words#Miscellaneous)) and with name and content prepended to args.
+---Expands an extension tag.
 ---
 ---Note that the title and arguments are not preprocessed before being passed into the template.
 ---
@@ -86,7 +86,7 @@ function frame:getTitle() end
 
 ---Create a new [Frame object](lua://frame) that is a child of the current frame, with optional arguments and title.
 ---
----This is mainly intended for use in modules that call other modules whose name is defined by the caller (e.g. `{{#invoke:params|concat_and_invoke}}`), or in the debug console for testing functions that would normally be called by `{{#invoke:}}`. The number of frames that may be created at any one time is limited.
+---This is mainly intended for use in providing a specific parent frame environment for calls like `frame:newChild(...):callParserFunction('#invoke', ...)` or `frame:newChild(...):preprocess(...)`, etc., for modules that check their parent frame, etc. Beyond casual debugging, e.g., testing functions in the debug console, etc., it should not be used to attempt to emulate `{{#invoke:}}` in production code as there are a number of ways the called module can detect how it is called. The number of frames that may be created at any one time is limited.
 ---
 ---@param namedArg { title: string, args: table<number | string, number | string> }
 ---@return frame #The new frame object.
