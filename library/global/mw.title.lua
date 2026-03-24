@@ -10,7 +10,7 @@
 ---@field length number The length (duration) of the media file in seconds. Zero for media types which do not support length.
 ---@field metadata table<string, string | table<string, string>> Embedded metadata (e.g. Exif) from the file. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
 
----@class mw.title
+---@class MwTitle
 ---@field id number The page_id. `0` if the page does not exist. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---@field interwiki string The interwiki prefix, or the empty string if none.
 ---@field namespace number The namespace number.
@@ -36,20 +36,21 @@
 ---@field isSubpage boolean Whether this title is a subpage of some other title.
 ---@field isTalkPage boolean Whether this is a title for a talk page.
 ---@field contentModel string The content model for this title, as a string. [This may be expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
----@field basePageTitle mw.title The same as mw.title.makeTitle(title.namespace, title.baseText).
----@field rootPageTitle mw.title The same as mw.title.makeTitle(title.namespace, title.rootText).
----@field talkPageTitle mw.title | nil The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].talk.id, title.text), or nil if this title cannot have a talk page.
----@field subjectPageTitle mw.title The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].subject.id, title.text).
----@field redirectTarget? mw.title | false Returns a title object of the target of the redirect page if the page is a redirect and the page exists, returns false otherwise.
+---@field basePageTitle MwTitle The same as mw.title.makeTitle(title.namespace, title.baseText).
+---@field rootPageTitle MwTitle The same as mw.title.makeTitle(title.namespace, title.rootText).
+---@field talkPageTitle MwTitle | nil The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].talk.id, title.text), or nil if this title cannot have a talk page.
+---@field subjectPageTitle MwTitle The same as mw.title.makeTitle(mw.site.namespaces[title.namespace].subject.id, title.text).
+---@field redirectTarget? MwTitle | false Returns a title object of the target of the redirect page if the page is a redirect and the page exists, returns false otherwise.
 ---@field protectionLevels? table<string, (string | nil)[]> The page's protection levels. This is a table with keys corresponding to each action (e.g., "edit" and "move"). The table values are arrays, the first item of which is a string containing the protection level. If the page is unprotected, either the table values or the array items will be nil. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
 ---@field cascadingProtection? { restrictions: (string | nil)[], sources: string[] } The cascading protections applicable to the page. This is a table with keys "restrictions" (itself a table with keys like protectionLevels has) and "sources" (an array listing titles where the protections cascade from). If no protections cascade to the page, "restrictions" and "sources" will be empty. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
 ---@field categories? string[] The list of categories used on the page. [This is expensive.](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit)
 ---@field content? string Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
----@field pageLang? mw.language The language object for the title's page content language, which defaults to the wiki's content language. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
+---@field pageLang? MwLanguage The language object for the title's page content language, which defaults to the wiki's content language. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---@field isDisambiguationPage? boolean (Provided by [Extension:Disambiguator](https://www.mediawiki.org/wiki/Extension:Disambiguator)) Returns true for disambiguation pages. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---@field pageAssessments string[] (Provided by [Extension:PageAssessments](https://www.mediawiki.org/wiki/Extension:PageAssessments)) Returns the names of WikiProjects associated with the page along with their class and importance assessments. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
 ---@field pageImage string (Provided by [Extension:PageImages](https://www.mediawiki.org/wiki/Extension:PageImages)) Returns the name of the file selected as the image that is shown in search results and related article lists. [This is expensive.](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties)
----
+local MwTitle = {}
+
 ---Title utilities and access to page information.
 ---
 ---Note that fields ending with text return titles as string values whereas the fields ending with title return title objects.
@@ -60,18 +61,18 @@
 mw.title = {}
 
 ---Test for whether two titles are equal. Note that fragments are ignored in the comparison.
----@param a mw.title The first title to compare.
----@param b mw.title The second title to compare.
+---@param a MwTitle The first title to compare.
+---@param b MwTitle The second title to compare.
 function mw.title.equals(a, b) end
 
 ---Compares titles by interwiki prefix (if any) as strings, then by namespace number, then by the unprefixed title text as a string. These string comparisons use Lua's standard < operator.
----@param a mw.title The first title to compare.
----@param b mw.title The second title to compare.
+---@param a MwTitle The first title to compare.
+---@param b MwTitle The second title to compare.
 ---@return number Returns -1 if a < b, 0 if a == b, 1 if a > b.
 function mw.title.compare(a, b) end
 
 ---Returns the title object for the current page.
----@return mw.title The title object for the current page.
+---@return MwTitle The title object for the current page.
 function mw.title.getCurrentTitle() end
 
 ---Creates a new title object.
@@ -80,7 +81,7 @@ function mw.title.getCurrentTitle() end
 ---
 ---@param text string The title text.
 ---@param namespace? string | number The namespace for the title.
----@return mw.title | nil #The new title object, or nil if the title is invalid.
+---@return MwTitle | nil #The new title object, or nil if the title is invalid.
 function mw.title.new(text, namespace) end
 
 ---Creates a new title object.
@@ -88,7 +89,7 @@ function mw.title.new(text, namespace) end
 ---An object is created for the title with that page_id. The title referenced will be counted as linked from the current page. The [expensive function count](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit) will be incremented if the title object created is not for a title that has already been loaded.
 ---
 ---@param id number The title page ID.
----@return mw.title | nil #The new title object, or nil if the page does not exist.
+---@return MwTitle | nil #The new title object, or nil if the page does not exist.
 ---@see mw.title.newBatch
 function mw.title.new(id) end
 
@@ -107,7 +108,7 @@ function batchObj:lookupExistence() end
 ---Execute the lookup and return the title objects.
 ---
 ---[This method may be expensive](https://www.mediawiki.org/wiki/Extension:Scribunto/Lua_reference_manual#Expensive_properties). If [batchObj:lookupExistence()](lua://batchObj.lookupExistence) was called first, it will increment the expensive function count once for every 25 items it needs to lookup.
----@return mw.title[] #The title objects for the pages looked up. If [batchObj:lookupExistence()](lua://batchObj.lookupExistence) was called first, the title objects will have the `.exists`, `.contentModel`, `.id`, and `.isRedirect` fields populated.
+---@return MwTitle[] #The title objects for the pages looked up. If [batchObj:lookupExistence()](lua://batchObj.lookupExistence) was called first, the title objects will have the `.exists`, `.contentModel`, `.id`, and `.isRedirect` fields populated.
 function batchObj:getTitles() end
 
 ---Create a batch of titles to look up. For further usage notes, see the methods on the returned [batchObj](lua://batchObj).
@@ -128,60 +129,60 @@ function mw.title.newBatch(pages, defaultNamespace) end
 ---@param title string The title text.
 ---@param fragment? string The fragment identifier.
 ---@param interwiki? string The interwiki prefix.
----@return mw.title | nil #The new title object, or nil if the title is invalid.
+---@return MwTitle | nil #The new title object, or nil if the title is invalid.
 function mw.title.makeTitle(namespace, title, fragment, interwiki) end
 
 ---Whether this title is a subpage of the given title.
----@param title mw.title The title to check against.
+---@param title MwTitle The title to check against.
 ---@return boolean #True if this title is a subpage of the given title, false otherwise.
-function mw.title:isSubpageOf(title) end
+function MwTitle:isSubpageOf(title) end
 
 ---Whether this title is in the given namespace.
 ---@param ns string | number The namespace to check against.
 ---@return boolean #True if the title is in the given namespace, false otherwise.
-function mw.title:inNamespace(ns) end
+function MwTitle:inNamespace(ns) end
 
 ---Whether this title is in any of the given namespaces.
 ---@param ... string | number The namespaces to check against.
 ---@return boolean #True if the title is in any of the given namespaces, false otherwise.
-function mw.title:inNamespaces(...) end
+function MwTitle:inNamespaces(...) end
 
 ---Whether this title's subject namespace is in the given namespace.
 ---@param ns string | number The namespace to check against.
 ---@return boolean #True if the title's subject namespace is in the given namespace, false otherwise.
-function mw.title:hasSubjectNamespace(ns) end
+function MwTitle:hasSubjectNamespace(ns) end
 
 ---Creates a subpage title object.
 ---
 ---Equivalent to `mw.title.makeTitle(self.namespace, self.text .. '/' .. text)`.
 ---
 ---@param text string The subpage text.
----@return mw.title #The new subpage title object.
-function mw.title:subPageTitle(text) end
+---@return MwTitle #The new subpage title object.
+function MwTitle:subPageTitle(text) end
 
 ---Returns the title text encoded as it would be in a URL.
 ---@return string The encoded title text.
-function mw.title:partialUrl() end
+function MwTitle:partialUrl() end
 
 ---Returns the full URL for this title.
 ---@param query? table | string The query parameters.
 ---@param proto? "http" | "https" | "relative" | "canonical" The URL scheme to use. Defaults to "relative".
 ---@return string #The full URL.
-function mw.title:fullUrl(query, proto) end
+function MwTitle:fullUrl(query, proto) end
 
 ---Returns the local URL for this title.
 ---@param query? table | string The query parameters.
 ---@return string #The local URL.
-function mw.title:localUrl(query) end
+function MwTitle:localUrl(query) end
 
 ---Returns the canonical URL for this title.
 ---@param query? table | string The query parameters.
 ---@return string #The canonical URL.
-function mw.title:canonicalUrl(query) end
+function MwTitle:canonicalUrl(query) end
 
 ---Returns the (unparsed) content of the page, or nil if there is no page. The page will be recorded as a transclusion.
 ---@deprecated Use the `content` property instead.
 ---@return string | nil
-function mw.title:getContent() end
+function MwTitle:getContent() end
 
--- no export
+return mw.title

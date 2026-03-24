@@ -1,9 +1,7 @@
 ---@meta mw.ext.ParserFunctions
 
----@class mw.ext.ParserFunctions
----@see mw.ext.ParserFunctions.expr
----
 ---Lua API added by [Extension:ParserFunctions](https://www.mediawiki.org/wiki/Extension:ParserFunctions).
+---@see mw.ext.ParserFunctions.expr
 mw.ext.ParserFunctions = {}
 
 ---Evaluates an ParserFunctions #expr expression.
@@ -11,4 +9,4 @@ mw.ext.ParserFunctions = {}
 ---@return string #The result of the expression.
 function mw.ext.ParserFunctions.expr(expr) end
 
--- no export
+return mw.ext.ParserFunctions

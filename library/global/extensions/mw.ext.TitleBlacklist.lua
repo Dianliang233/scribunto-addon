@@ -1,9 +1,7 @@
 ---@meta mw.ext.TitleBlacklist
 
----@class mw.ext.TitleBlacklist
----@see mw.ext.TitleBlacklist.test
----
 ---Lua API added by [Extension:TitleBlacklist](https://www.mediawiki.org/wiki/Extension:TitleBlacklist).
+---@see mw.ext.TitleBlacklist.test
 mw.ext.TitleBlacklist = {}
 
 ---@class TitleBlacklistEntry
@@ -30,4 +28,4 @@ mw.ext.TitleBlacklist = {}
 ---@return TitleBlacklistEntry | nil #Details for the matched entry, or nil if no match is found.
 function mw.ext.TitleBlacklist.test(action, title) end
 
--- no export
+return mw.ext.TitleBlacklist.test

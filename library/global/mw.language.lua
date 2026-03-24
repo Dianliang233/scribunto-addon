@@ -1,12 +1,14 @@
 ---@meta mw.language
 
----@class mw.language
 ---Language module for handling language-specific operations and utilities.
 ---
 ---Language codes are described at [language code](https://www.mediawiki.org/wiki/Special:MyLanguage/Language_code). Many of MediaWiki's language codes are similar to [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag), but not all MediaWiki language codes are valid IETF tags or vice versa.
 ---
 ---Get instances of `mw.language` using [`mw.language.new`](lua://mw.language.new) and [`mw.language.getContentLanguage`](lua://mw.language.getContentLanguage).
 mw.language = {}
+
+---@class MwLanguage
+local MwLanguage = {}
 
 ---Get the full name of the language for the given language code in a language.
 ---
@@ -22,7 +24,7 @@ function mw.language.fetchLanguageName(code, inLanguage) end
 ---By default, only language names known to MediaWiki are returned; passing 'all' for `include` will return all available languages (from [Extension:CLDR](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CLDR)), while passing 'mwfile' will include only languages having customized messages included with MediaWiki core or enabled extensions. To explicitly select the default, 'mw' may be passed.
 ---
 ---@overload fun(): table<string, string>
----@overload fun(inLanguage: string): table<string, string>
+---@overload fun(inMwLanguage: string): table<string, string>
 ---@param inLanguage? string The language code to return names in that language.
 ---@param include? string The inclusion criteria for languages ('all', 'mwfile', 'mw').
 ---@return table <string, string> table mapping language code to language name.
@@ -30,7 +32,7 @@ function mw.language.fetchLanguageNames(inLanguage, include) end
 
 ---Get a new language object for the wiki's default content language.
 ---
----@return mw.language #A new language object.
+---@return MwLanguage #A new language object.
 function mw.language.getContentLanguage() end
 
 mw.getContentLanguage = mw.language.getContentLanguage
@@ -48,7 +50,7 @@ mw.language.FALLBACK_STRICT = "FALLBACK_STRICT"
 ---
 ---@param code string The language code to check.
 ---@param mode? `mw.language.FALLBACK_MESSAGES` | `mw.language.FALLBACK_STRICT` The fallback mode to use. By default, the final implicit fallback to 'en' (English) is included; set to [`mw.language.FALLBACK_STRICT`](lua://mw.language.FALLBACK_STRICT) to exclude it.
----@return table<mw.language> #A list of fallback language codes.
+---@return table<MwLanguage> #A list of fallback language codes.
 function mw.language.getFallbacksFor(code, mode) end
 
 ---Checks whether a language code is known to MediaWiki.
@@ -96,7 +98,7 @@ function mw.language.isValidCode(code) end
 ---There is a limit of 200 on the number of distinct language codes that may be used on a page. Exceeding this limit will result in errors.
 ---
 ---@param code string The language code.
----@return mw.language #A new language object.
+---@return MwLanguage #A new language object.
 function mw.language.new(code) end
 
 mw.getLanguage = mw.language.new
@@ -104,26 +106,26 @@ mw.getLanguage = mw.language.new
 ---Returns the language code for this language object.
 ---
 ---@return string #The language code.
-function mw.language:getCode() end
+function MwLanguage:getCode() end
 
 ---Returns the standard [BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) language code for this language object. This is the code string which is appropriate to use in HTML, for example as the value of a `lang` attribute.
 ---
 ---@see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Language/BCP-47
 ---@return string #The BCP-47 language code.
-function mw.language:toBcp47Code() end
+function MwLanguage:toBcp47Code() end
 
 ---Returns a list of MediaWiki's fallback language codes for this language object.
 ---
 ---Equivalent to `mw.language.getFallbacksFor(lang:getCode())`.
 ---
 ---@param mode? `mw.language.FALLBACK_MESSAGES` | `mw.language.FALLBACK_STRICT` The fallback mode to use. By default, the final implicit fallback to 'en' (English) is included; set to [`mw.language.FALLBACK_STRICT`](lua://mw.language.FALLBACK_STRICT) to exclude it.
----@return table<mw.language> #A list of fallback language codes.
-function mw.language:getFallbackLanguages(mode) end
+---@return table<MwLanguage> #A list of fallback language codes.
+function MwLanguage:getFallbackLanguages(mode) end
 
 ---Returns `true` if the language is written right-to-left, `false` if it is written left-to-right.
 ---
 ---@return boolean #True if the language is written right-to-left.
-function mw.language:isRTL() end
+function MwLanguage:isRTL() end
 
 ---Converts the string to lowercase, honoring any special rules for the given language.
 ---
@@ -131,14 +133,14 @@ function mw.language:isRTL() end
 ---
 ---@param s string The string to convert to lowercase.
 ---@return string #The lowercase string.
-function mw.language:lc(s) end
+function MwLanguage:lc(s) end
 
 ---Converts the first character of the string to lowercase, honoring any special rules for the given language.
 ---
 ---@see mw.language.lc
 ---@param s string The string to convert the first character to lowercase.
 ---@return string #The string with the first character in lowercase.
-function mw.language:lcfirst(s) end
+function MwLanguage:lcfirst(s) end
 
 ---Converts the string to uppercase, honoring any special rules for the given language.
 ---
@@ -146,27 +148,27 @@ function mw.language:lcfirst(s) end
 ---
 ---@param s string The string to convert to uppercase.
 ---@return string #The uppercase string.
-function mw.language:uc(s) end
+function MwLanguage:uc(s) end
 
 ---Converts the first character of the string to uppercase, honoring any special rules for the given language.
 ---
 ---@see mw.language.uc
 ---@param s string The string to convert the first character to uppercase.
 ---@return string #The string with the first character in uppercase.
-function mw.language:ucfirst(s) end
+function MwLanguage:ucfirst(s) end
 
 ---Converts the string to a representation appropriate for case-insensitive comparison. Note that the result may not make any sense when displayed.
 ---
 ---@param s string The string to convert for case-insensitive comparison.
 ---@return string #The case-folded string.
-function mw.language:caseFold(s) end
+function MwLanguage:caseFold(s) end
 
 ---Formats a number with grouping and decimal separators appropriate for the given language. Given 123456.78, this may produce "123,456.78", "123.456,78", or even something like "١٢٣٬٤٥٦٫٧٨" depending on the language and wiki configuration.
 ---
 ---@param n number The number to format.
 ---@param options? { noCommafy: boolean } A table of options. Set `noCommafy` to true to omit grouping separators and use a dot (.) as the decimal separator. Digit transformation may still occur, which may include transforming the decimal separator.
 ---@return string #The formatted number.
-function mw.language:formatNum(n, options) end
+function MwLanguage:formatNum(n, options) end
 
 ---Formats a date according to the given format string.
 ---
@@ -189,14 +191,14 @@ function mw.language:formatNum(n, options) end
 ---@param timestamp? string The timestamp to format.
 ---@param isLocal? boolean If true, the time is formatted in the wiki's local time rather than in UTC.
 ---@return string #The formatted date.
-function mw.language:formatDate(format, timestamp, isLocal) end
+function MwLanguage:formatDate(format, timestamp, isLocal) end
 
 ---Formats a duration in a human-readable way.
 ---
 ---@param seconds number The duration in seconds.
 ---@param chosenIntervals? table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> The interval units to use in the response.
 ---@return string #The formatted duration.
-function mw.language:formatDuration(seconds, chosenIntervals) end
+function MwLanguage:formatDuration(seconds, chosenIntervals) end
 
 ---Parses a formatted number string and returns the actual number.
 ---
@@ -204,7 +206,7 @@ function mw.language:formatDuration(seconds, chosenIntervals) end
 ---
 ---@param s string The formatted number string.
 ---@return number #The parsed number.
-function mw.language:parseFormattedNumber(s) end
+function MwLanguage:parseFormattedNumber(s) end
 
 ---Chooses the appropriate grammatical form from forms based on the number n.
 ---
@@ -217,7 +219,7 @@ function mw.language:parseFormattedNumber(s) end
 ---@param n number The number to base the pluralization on.
 ---@param forms table  The forms to choose from.
 ---@return string #The appropriate grammatical form.
-function mw.language:convertPlural(n, forms) end
+function MwLanguage:convertPlural(n, forms) end
 
 mw.language.plural = mw.language.convertPlural
 
@@ -230,7 +232,7 @@ mw.language.plural = mw.language.convertPlural
 ---@param case string The inflection code.
 ---@param word string The word to inflect.
 ---@return string #The appropriate inflected form.
-function mw.language:grammar(case, word) end
+function MwLanguage:grammar(case, word) end
 
 ---Chooses the appropriate inflected form of word for the given inflection code case.
 ---
@@ -241,7 +243,7 @@ function mw.language:grammar(case, word) end
 ---@param word string The word to inflect.
 ---@param case string The inflection code.
 ---@return string #The appropriate inflected form.
-function mw.language:convertGrammar(word, case) end
+function MwLanguage:convertGrammar(word, case) end
 
 ---Chooses the string corresponding to the gender of what.
 ---
@@ -249,7 +251,7 @@ function mw.language:convertGrammar(word, case) end
 ---@param what "male" | "female" | string Either "male", "female", or a registered user name. Gender of this string determines which string is chosen.
 ---@param forms table<string> The masculine, feminine, neutral forms.
 ---@return string #The appropriate form based on gender.
-function mw.language:gender(what, forms) end
+function MwLanguage:gender(what, forms) end
 
 ---Returns a Unicode arrow character corresponding to direction.
 ---
@@ -257,30 +259,30 @@ function mw.language:gender(what, forms) end
 ---
 ---@param direction "forwards" | "backwards" | "left" | "right" | "up" | "down" The direction for the arrow.
 ---@return string #The Unicode arrow character.
-function mw.language:getArrow(direction) end
+function MwLanguage:getArrow(direction) end
 
 ---Returns "ltr" or "rtl", depending on the directionality of the language.
 ---
 ---@return "ltr" | "rtl" #The directionality of the language.
-function mw.language:getDir() end
+function MwLanguage:getDir() end
 
 ---Returns a string containing either U+200E (the left-to-right mark) or U+200F (the right-to-left mark), depending on the directionality of the language and whether `opposite` is a true or false value.
 ---
 ---@param opposite? boolean If true, returns the mark for the opposite direction.
 ---@return string #The directionality mark.
-function mw.language:getDirMark(opposite) end
+function MwLanguage:getDirMark(opposite) end
 
 ---Returns a string containing either "&lrm;" or "&rlm;", depending on the directionality of the language and whether `opposite` is a true or false value.
 ---
 ---@param opposite? boolean If true, returns the entity for the opposite direction.
 ---@return string #The directionality mark entity.
-function mw.language:getDirEntity(opposite) end
+function MwLanguage:getDirEntity(opposite) end
 
 ---Breaks a duration in seconds into more human-readable units, e.g. 12345 to 3 hours, 25 minutes and 45 seconds, returning the result as a table mapping unit names to numbers.
 ---
 ---@param seconds number The duration in seconds.
 ---@param chosenIntervals? table<'millennia' | 'centuries' | 'decades' | 'years' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'> The interval units to use in the response.
 ---@return table<string, number> #A table mapping unit names to numbers.
-function mw.language:getDurationIntervals(seconds, chosenIntervals) end
+function MwLanguage:getDurationIntervals(seconds, chosenIntervals) end
 
--- no export
+return mw.language

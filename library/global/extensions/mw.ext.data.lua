@@ -1,9 +1,7 @@
 ---@meta mw.ext.data
 
----@class mw.ext.data
----@see mw.ext.data.get
----
 ---Lua API added by [Extension:JsonConfig](https://www.mediawiki.org/wiki/Extension:JsonConfig).
+---@see mw.ext.data.get
 mw.ext.data = {}
 
 ---Returns data page as a data table.
@@ -12,4 +10,4 @@ mw.ext.data = {}
 ---@return table #The data table.
 function mw.ext.data.get(title, language) end
 
--- no export
+return mw.ext.data

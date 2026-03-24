@@ -1,7 +1,5 @@
 ---@meta mw.smw
 
----@class mw.smw
----
 ---Lua API added by [Semantic Scribunto](https://www.mediawiki.org/wiki/Extension:Semantic_Scribunto), providing native Scribunto support for the [Semantic MediaWiki](https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki) extension.
 mw.smw = {}
 
@@ -57,4 +55,4 @@ function mw.smw.getQueryResult(query) end
 ---@return string | '_anu' | '_boo' | '_cod' | '_dat' | '_eid' | '_ema' | '_geo' | '_keyw' | '_mlt_rec' | '_num' | '_qty' | '_rec' | '_ref_rec' | '_tel' | '_tem' | '_txt' | '_uri' | '_wpg' | nil #The property type, or nil if the property does not exist. See [documentation](https://www.semantic-mediawiki.org/wiki/Help:List_of_datatypes) for information about the internal type names.
 function mw.smw.getPropertyType(property) end
 
--- no export
+return mw.smw

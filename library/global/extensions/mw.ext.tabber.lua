@@ -9,4 +9,4 @@ mw.ext.tabber = {}
 ---@return string #The rendered tabber wikitext
 function mw.ext.tabber.render(args) end
 
--- no export
+return mw.ext.tabber

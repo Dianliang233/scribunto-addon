@@ -123,4 +123,4 @@ function QueryBuilder.run() end
 mw.bucket = bucket
 mw.ext.bucket = bucket
 
--- no export
+return bucket

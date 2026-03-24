@@ -155,4 +155,4 @@ function mw.ustring.toNFKD(s) end
 ---@return string #The resulting string with all uppercase characters converted to uppercase.
 function mw.ustring.upper(s) end
 
--- no export
+return mw.ustring

@@ -1,7 +1,5 @@
 ---@meta mw.ext.VariablesLua
 
----@class mw.ext.VariablesLua
----
 ---Lua API added by [Extension:VariablesLua](https://www.mediawiki.org/wiki/Extension:VariablesLua).
 mw.ext.VariablesLua = {}
 
@@ -40,4 +38,4 @@ function mw.ext.VariablesLua.varexists(name) end
 ---@return string #The last stored value or the default value.
 function mw.ext.VariablesLua.var_final(name, default) end
 
--- no export
+return mw.ext.VariablesLua

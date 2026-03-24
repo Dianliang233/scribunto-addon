@@ -188,4 +188,4 @@ function mw.text.unstripNoWiki(string) end
 ---@return string #The processed string.
 function mw.text.unstrip(string) end
 
--- no export
+return mw.text

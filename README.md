@@ -57,12 +57,12 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 - [ ] `mw.bcmath`
 - [x] `mw.smw`
 - [x] `mw.ext.data`
-- [ ] `mw.ext.cargo`
+- [x] `mw.ext.cargo`
 - [ ] `mw.ext.cattools`
-- [ ] `mw.ext.FlaggedRevs`
+- [x] `mw.ext.FlaggedRevs`
 - [x] `mw.ext.tabber`
 - [x] `mw.ext.TitleBlacklist`
-- [ ] `mw.ext.translate.messageBundle`
+- [x] `mw.ext.translate.messageBundle`
 - [x] `mw.ext.ParserFunctions`
 - [ ] `mw.ext.proofreadPage`
 - [ ] `mw.ext.articlePlaceholder`
