@@ -1,7 +1,5 @@
 ---@meta bit32
 
----@class bit32
----
 ---The bit32 library provides [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation) on unsigned 32-bit integers. Input numbers are truncated to integers (in an unspecified manner) and reduced modulo 2^32 so the value is in the range 0 to 2^32−1; return values are also in this range.
 ---
 ---When bits are numbered (as in [bit32.extract()](lua://bit32.extract)), 0 is the least-significant bit (the one with value 2^0) and 31 is the most-significant (the one with value 2^31).

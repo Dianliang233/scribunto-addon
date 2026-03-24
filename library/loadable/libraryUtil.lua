@@ -1,7 +1,5 @@
 ---@meta libraryUtil
 
----@class libraryUtil
----
 ---This library contains methods useful when implementing Scribunto libraries.
 local libraryUtil = {}
 

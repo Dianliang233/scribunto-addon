@@ -1,7 +1,5 @@
 ---@meta luabit.hex
 
----@class luabit.hex
----
 ---The luabit.hex library provides [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation). Note that these operations may be performed using [`string.format()`](lua://string.format) and [`tonumber()`](lua://tonumber) with the base argument set to 16 instead.
 local hex = {}
 

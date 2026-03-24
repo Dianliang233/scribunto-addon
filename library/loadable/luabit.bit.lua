@@ -1,7 +1,5 @@
 ---@meta luabit.bit
 
----@class luabit.bit
----
 ---The luabit.bit library provides [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation). Note that the bit32 library contains the same operations as "luabit.bit".
 local bit = {}
 
