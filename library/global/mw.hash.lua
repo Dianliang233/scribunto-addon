@@ -6,7 +6,7 @@ mw.hash = {}
 ---Hashes a string value with the specified algorithm. Valid algorithms may be fetched using [mw.hash.listAlgorithms()](lua://mw.hash.listAlgorithms).
 ---@param algo string The hash algorithm to use.
 ---@param value string The value to hash.
----@returns string #The hashed value.
+---@return string #The hashed value.
 function mw.hash.hashValue(algo, value) end
 
 ---Lists the available hash algorithms.

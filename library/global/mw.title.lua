@@ -114,7 +114,7 @@ function batchObj:getTitles() end
 ---
 ---@param pages string[] A list of page titles to look up. using numbers as is allowed by `mw.title.new` is not currently supported.
 ---@param defaultNamespace? string Default namespace to use when looking up the page title.
----@returns `batchObj`
+---@return `batchObj`
 ---@see mw.title.new
 function mw.title.newBatch(pages, defaultNamespace) end
 

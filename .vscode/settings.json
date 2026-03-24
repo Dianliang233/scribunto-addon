@@ -9,4 +9,5 @@
     "io": "disable",
     "coroutine": "disable"
   }
+  // "Lua.runtime.plugin": "plugin.lua"
 }
