@@ -51,8 +51,8 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 <details>
 <summary>Extensions</summary>
 
-- [ ] `mw.wikibase`
-- [ ] `mw.wikibase.lexeme`
+- [x] `mw.wikibase`
+- [x] `mw.wikibase.lexeme`
 - [ ] `mw.wikibase.mediainfo`
 - [ ] `mw.bcmath`
 - [x] `mw.smw`
