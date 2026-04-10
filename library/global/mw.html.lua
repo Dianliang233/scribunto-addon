@@ -14,10 +14,9 @@ local MwHtml = {}
 
 ---Create an mw.html object.
 ---
----@param tagName string The tag name for the element.
----@param args MwHtmlOptions Additional options for the element.
+---@param tagName? string The tag name for the element. And empty string or nil creates an mw.html object with no enclosing tag.
+---@param args? MwHtmlOptions Additional options for the element.
 ---@return MwHtml #The mw.html object.
----@overload fun(tagName: string): MwHtml
 function mw.html.create(tagName, args) end
 
 ---Appends a child mw.html (builder) node to the current mw.html instance.
@@ -31,7 +30,7 @@ function MwHtml:node(builder) end
 ---
 --- Basic wikitext will get parsed, like HTML, links, bold, lists or tables. However, templates and parser functions won't be evaluated if they are passed directly to this function, unless they came from template parameters. Those will be rendered in plain text instead. To evaluate them, they'll have to be passed through [frame:preprocess](lua://frame.preprocess).
 ---
---- @param ... string | nil
+--- @param ... string | number | nil
 --- @return MwHtml
 function MwHtml:wikitext(...) end
 
@@ -43,20 +42,19 @@ function MwHtml:newline() end
 ---
 ---Note that contrarily to other methods such as [`html:node()`](lua://mw.html.node), this method doesn't return the current mw.html instance, but the mw.html instance of the newly inserted tag. Make sure to use [`html:done()`](lua://mw.html.done) to go up to the parent mw.html instance, or [`html:allDone()`](lua://mw.html.allDone) if you have nested tags on several levels.
 ---
----@param tagName string The tag name for the element.
----@param args MwHtmlOptions Additional options for the element.
+---@param tagName? string The tag name for the element.
+---@param args? MwHtmlOptions Additional options for the element.
 ---@return MwHtml #The mw.html object.
----@overload fun(tagName: string): MwHtml
 function MwHtml:tag(tagName, args) end
 
 ---Set an HTML attribute with the given name and value on the node.
 ---@param name string The name of the attribute to set.
----@param value string | nil The value of the attribute to set. A value of nil causes any attribute with the given name to be unset if it was previously set.
+---@param value string | number | nil The value of the attribute to set. A value of nil causes any attribute with the given name to be unset if it was previously set.
 ---@return MwHtml #The mw.html object.
 function MwHtml:attr(name, value) end
 
 ---Set an HTML attribute with the given name and value on the node.
----@param table table<string, string> A table holding name->value pairs of attributes to set.
+---@param table table<string, string | number> A table holding name->value pairs of attributes to set.
 ---@return MwHtml #The mw.html object.
 function MwHtml:attr(table) end
 
@@ -66,23 +64,23 @@ function MwHtml:attr(table) end
 function MwHtml:getAttr(name) end
 
 ---Adds a class name to the node's class attribute.
----@param class string | nil Class name to add to the node. If a nil parameter is passed, this is a no-op.
+---@param class string | number | nil Class name to add to the node. If a nil parameter is passed, this is a no-op.
 ---@return MwHtml #The mw.html object.
 function MwHtml:addClass(class) end
 
 ---Set an CSS property with the given name and value on the node.
 ---@param name string The name of the attribute to set.
----@param value string | nil The value of the attribute to set. A value of nil causes any property with the given name to be unset if it was previously set.
+---@param value string | number | nil The value of the attribute to set. A value of nil causes any property with the given name to be unset if it was previously set.
 ---@return MwHtml #The mw.html object.
 function MwHtml:css(name, value) end
 
 ---Set an CSS property with the given name and value on the node.
----@param table table<string, string> A table holding name->value pairs of property to set.
+---@param table table<string, string | number> A table holding name->value pairs of property to set.
 ---@return MwHtml #The mw.html object.
 function MwHtml:css(table) end
 
 ---Add some raw css to the node's style attribute.
----@param css string | nil The css to add to the node's style attribute. If a nil parameter is passed, this is a no-op.
+---@param css string | number | nil The css to add to the node's style attribute. If a nil parameter is passed, this is a no-op.
 ---@return MwHtml #The mw.html object.
 function MwHtml:cssText(css) end
 
