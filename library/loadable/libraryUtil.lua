@@ -11,7 +11,7 @@ local libraryUtil = {}
 --- @param argIdx number The position of the argument in the argument list.
 --- @param arg any The argument to check.
 --- @param expectType type The expected type of the argument.
---- @param nilOk boolean Whether nil is an acceptable value for the argument.
+--- @param nilOk? boolean Whether nil is an acceptable value for the argument.
 function libraryUtil.checkType(name, argIdx, arg, expectType, nilOk) end
 
 --- Checks the type of an argument and raises an error if it does not match any of the expected types.
@@ -45,7 +45,7 @@ function libraryUtil.checkTypeForIndex(index, value, expectType) end
 --- @param argName string The name of the argument.
 --- @param arg any The argument to check.
 --- @param expectType type The expected type of the argument.
---- @param nilOk boolean Whether nil is an acceptable value for the argument.
+--- @param nilOk? boolean Whether nil is an acceptable value for the argument.
 function libraryUtil.checkTypeForNamedArg(name, argName, arg, expectType, nilOk) end
 
 --- Creates a function that checks if the self object is correct for a method call.
