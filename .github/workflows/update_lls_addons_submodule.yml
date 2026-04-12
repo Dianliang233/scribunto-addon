@@ -18,7 +18,7 @@ jobs:
 
       - name: Update update-scribunto branch to upstream
         run: |
-          git remote add upstream
+          git remote add upstream https://github.com/LuaLS/LLS-Addons.git
           git fetch upstream
           git checkout -B update-scribunto upstream/main
 
