@@ -15,7 +15,7 @@ jobs:
         with:
           repository: Dianliang233/LLS-Addons
           token: ${{ secrets.LLS_ADDONS_GITHUB_TOKEN }}
-          submodules: true
+
       - name: Update update-scribunto branch
         run: |
           git fetch origin
@@ -23,7 +23,7 @@ jobs:
 
       - name: Update submodule
         run: |
-          git submodule update --remote addons/scribunto
+          git submodule update --init --recursive --remote addons/scribunto
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -am "Update Scribunto addon"
