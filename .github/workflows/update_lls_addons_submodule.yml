@@ -16,10 +16,11 @@ jobs:
           repository: Dianliang233/LLS-Addons
           token: ${{ secrets.LLS_ADDONS_GITHUB_TOKEN }}
 
-      - name: Update update-scribunto branch
+      - name: Update update-scribunto branch to upstream
         run: |
-          git fetch origin
-          git checkout -B update-scribunto origin/main
+          git remote add upstream
+          git fetch upstream
+          git checkout -B update-scribunto upstream/main
 
       - name: Update submodule
         run: |
