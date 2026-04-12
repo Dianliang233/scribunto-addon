@@ -1,0 +1,31 @@
+name: Update LLS-Addons submodule
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-lls-addons-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout LLS-Addons
+        uses: actions/checkout@v3
+        with:
+          repository: Dianliang233/LLS-Addons
+          token: ${{ secrets.LLS_ADDONS_GITHUB_TOKEN }}
+      - name: Update update-scribunto branch
+        run: |
+          git fetch origin
+          git checkout -B update-scribunto origin/main
+
+      - name: Update submodule
+        run: |
+          git submodule update --remote addons/scribunto
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -am "Update Scribunto addon"
+
+      - name: Push
+        run: git push origin update-scribunto --force

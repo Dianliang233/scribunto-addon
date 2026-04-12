@@ -8,6 +8,7 @@
     "debug": "disable",
     "io": "disable",
     "coroutine": "disable"
-  }
+  },
+  "stylua.targetReleaseVersion": "latest"
   // "Lua.runtime.plugin": "plugin.lua"
 }
