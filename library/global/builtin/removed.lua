@@ -1,5 +1,5 @@
 -- LuaLS doesn't support picking and choosing which builtin function to be removed without redefining all of them.
--- So the next best thing is to mark them as deprecated. This does mean that show up twice in the completion list.
+-- So the next best thing is to mark them as deprecated. This does mean that they show up twice in the completion list.
 
 ---Removed in Scribunto.
 ---@deprecated

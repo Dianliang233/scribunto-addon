@@ -49,6 +49,8 @@ function mw.loadData(module) end
 
 ---Works like [mw.loadData()](lua://mw.loadData), except it loads data from JSON pages rather than Lua tables.
 ---The JSON content must be an array or object.
+---
+---This function is [expensive](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit).
 ---@see mw.text.jsonDecode
 ---@param page string The page to load the JSON data from.
 ---@return table #The JSON data.

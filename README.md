@@ -82,4 +82,4 @@ The definition documentations are derived from [Lua reference manual](https://ww
 
 Generative AI is used to help generate the definitions based on the manual, which are further refined by human.
 
-(Last updated to [revision 8296099](https://www.mediawiki.org/w/index.php?title=Extension:Scribunto/Lua_reference_manual&oldid=8296099))
+(Last updated to [revision 8338227](https://www.mediawiki.org/w/index.php?title=Extension:Scribunto/Lua_reference_manual&oldid=8338227))
