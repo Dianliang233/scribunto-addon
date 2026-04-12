@@ -15,6 +15,7 @@ jobs:
         with:
           repository: Dianliang233/LLS-Addons
           token: ${{ secrets.LLS_ADDONS_GITHUB_TOKEN }}
+          submodules: true
       - name: Update update-scribunto branch
         run: |
           git fetch origin
