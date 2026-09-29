@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout LLS-Addons
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: Dianliang233/LLS-Addons
           token: ${{ secrets.LLS_ADDONS_GITHUB_TOKEN }}

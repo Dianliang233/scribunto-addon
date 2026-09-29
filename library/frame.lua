@@ -74,6 +74,10 @@ function frame:extensionTag(namedArg) end
 
 ---Get the parent frame.
 ---
+---When this function is called on the frame created by `{{#invoke:}}`, which is either obtained from [`mw.getCurrentFrame()`](lua://mw.getCurrentFrame) or passed to the function named in the `{{#invoke:}}`, it returns the frame for the page that called `{{#invoke:}}`. This "parent" frame provides access to any parameters, arguments, or other data for that calling page, which is often a template. This remains true regardless of whether this function is called directly from the "main" module invoked by `{{#invoke:}}` or from library module code accessed via `require()`.
+---
+---However, if this function is called on the frame available in the debug console or available from module code accessed via [`mw.loadData()`](lua://mw.loadData), it always returns `nil`, as there is either no concept or no access to a "parent" frame in these contexts. When called again on the "parent" frame, this function returns `nil`, as in Scribunto, there is no access to a "grandparent" frame (the parent frame of a parent frame).
+---
 ---For instance, if the template `{{Example}}` contains the code `{{#invoke:ModuleName|FunctionName|A|B}}`, and a page transcludes that template with the code `{{Example|C|D}}`, then in *Module:ModuleName*, calling `frame.args[1]` and `frame.args[2]` returns `"A"` and `"B"`, and calling `frame:getParent().args[1]` and `frame:getParent().args[2]` returns `"C"` and `"D"`, with frame being the first argument in the function call.
 ---
 ---@return frame | nil #The parent frame, or nil if there is no parent frame.
