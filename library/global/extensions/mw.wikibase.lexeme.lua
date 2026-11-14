@@ -22,6 +22,7 @@ mw.wikibase.lexeme = {}
 function mw.wikibase.lexeme.splitLexemeId(id) end
 
 ---Lexeme entity methods.
+---@class mw.wikibase.lexeme.entity.lexeme
 mw.wikibase.lexeme.entity.lexeme = {}
 
 ---Get all lemmas of this lexeme.
