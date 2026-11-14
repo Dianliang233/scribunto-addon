@@ -51,6 +51,7 @@ function mw.wikibase.lexeme.entity.lexeme:getForms() end
 function mw.wikibase.lexeme.entity.lexeme:getSenses() end
 
 ---Form entity methods.
+---@class mw.wikibase.lexeme.entity.form
 mw.wikibase.lexeme.entity.form = {}
 
 ---Get all representations of this form.
@@ -72,6 +73,7 @@ function mw.wikibase.lexeme.entity.form:getGrammaticalFeatures() end
 function mw.wikibase.lexeme.entity.form:hasGrammaticalFeature(itemId) end
 
 ---Sense entity methods.
+---@class mw.wikibase.lexeme.entity.sense
 mw.wikibase.lexeme.entity.sense = {}
 
 ---Get all glosses of this sense.
