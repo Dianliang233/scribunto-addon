@@ -174,6 +174,7 @@ mw.wikibase.description = mw.wikibase.getDescription
 mw.wikibase.sitelink = mw.wikibase.getSitelink
 
 ---Wikibase entity instance methods.
+---@class mw.wikibase.entity
 mw.wikibase.entity = {}
 
 ---Get entity ID.
