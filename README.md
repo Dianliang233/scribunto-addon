@@ -51,28 +51,29 @@ Definitions for all vanilla Scribunto APIs are now complete. The definitions for
 <details>
 <summary>Extensions</summary>
 
-- [x] `mw.wikibase`
-- [x] `mw.wikibase.lexeme`
-- [ ] `mw.wikibase.mediainfo`
-- [ ] `mw.bcmath`
-- [x] `mw.smw`
-- [x] `mw.ext.data`
-- [x] `mw.ext.cargo`
-- [ ] `mw.ext.cattools`
-- [x] `mw.ext.FlaggedRevs`
-- [x] `mw.ext.tabber`
-- [x] `mw.ext.TemplateStyles`
-- [x] `mw.ext.TitleBlacklist`
-- [x] `mw.ext.translate.messageBundle`
-- [x] `mw.ext.ParserFunctions`
-- [x] `mw.ext.proofreadPage`
-- [ ] `mw.ext.articlePlaceholder`
-- [ ] `mw.ext.externalData`
-- [ ] `mw.ext.UnlinkedWikibase`
-- [ ] `mw.ext.seo`
-- [x] `mw.ext.VariablesLua`
-- [ ] `mw.slots`
-- [x] `bucket`
+- [ ] ArticlePlaceholder: `mw.ext.articlePlaceholder`
+- [ ] BCMath: `mw.bcmath`
+- [x] Bucket: `bucket`
+- [x] Cargo: `mw.ext.cargo`
+- [ ] CategoryToolbox: `mw.ext.cattools`
+- [ ] ExternalData: `mw.ext.externalData`
+- [x] FlaggedRevs: `mw.ext.FlaggedRevs`
+- [x] GloopTweaks: `mw.ext.GloopTweaks`
+- [x] JsonConfig: `mw.ext.data`
+- [x] ParserFunctions: `mw.ext.ParserFunctions`
+- [x] Proofread Page: `mw.ext.proofreadPage`
+- [x] Semantic MediaWiki: `mw.smw`
+- [x] TabberNeue: `mw.ext.tabber`
+- [x] TemplateStyles: `mw.ext.TemplateStyles`
+- [x] TitleBlacklist: `mw.ext.TitleBlacklist`
+- [x] Translate: `mw.ext.translate.messageBundle`
+- [ ] UnlinkedWikibase: `mw.ext.UnlinkedWikibase`
+- [x] VariablesLua: `mw.ext.VariablesLua`
+- [x] Wikibase Client: `mw.wikibase`
+- [x] WikibaseLexeme: `mw.wikibase.lexeme`
+- [ ] WikibaseMediaInfo: `mw.wikibase.mediainfo`
+- [ ] WikiSEO: `mw.ext.seo`
+- [ ] WSSlots: `mw.slots`
 </details>
 
 ## Licensing and acknowledgements
